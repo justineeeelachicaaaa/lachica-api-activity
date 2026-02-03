@@ -1,9 +1,12 @@
 require('dotenv').config();
 const express = require('express');
+const connectDB = require('./src/config/db');
 const app = express();
+connectDB();
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Load Config
 const PORT = process.env.PORT || 3000;
@@ -17,3 +20,5 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Base URI: http://localhost:${PORT}${BASE_URI}`);
 });
+
+
