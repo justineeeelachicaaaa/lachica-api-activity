@@ -24,3 +24,12 @@ Returning a **404 Not Found** status code is specific and informative. It tells 
 
 ### 4. Testing
 ![Successful GET Request](GET-SS.PNG)
+
+### Embed and Reference
+**Why did I choose to Embed the [Review/Tag/Log]?**
+**Answer**
+I embed Log because they are strictly dependent on the parent document and are almost always retrieved together for context. This design maximizes read performance by fetching all necessary data in a single query, eliminating the latency of additional database lookups.
+
+**Why did I choose to Reference the [Chef/User/Guest]?**
+**Answer**
+I reference Guest because they exist independently of any single transaction and require updates to reflect everywhere simultaneously. This prevents massive data duplication and ensures the parent document remains within size limits, regardless of how active the referenced user becomes.
