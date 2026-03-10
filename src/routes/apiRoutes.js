@@ -1,8 +1,8 @@
-const express = require('express' );
+const express = require('express');
 const router = express.Router();
 
-
-
+// 1. IMPORT MO YUNG AUTH ROUTES DITO
+const authRoutes = require('./authRoutes'); 
 
 const {
   getAllRooms,
@@ -20,7 +20,10 @@ const {
   deleteGuest,
 } = require('../controllers/guestController');
 
-//Routes
+// 2. IKABIT MO YUNG AUTH ROUTES SA '/auth' PATH
+router.use('/auth', authRoutes);
+
+// Existing Routes
 router.get('/rooms', getAllRooms);
 router.post('/rooms', createRoom);
 router.get('/rooms/:id', getRoomById);

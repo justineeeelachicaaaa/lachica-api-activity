@@ -33,3 +33,24 @@ I embed Log because they are strictly dependent on the parent document and are a
 **Why did I choose to Reference the [Chef/User/Guest]?**
 **Answer**
 I reference Guest because they exist independently of any single transaction and require updates to reflect everywhere simultaneously. This prevents massive data duplication and ensures the parent document remains within size limits, regardless of how active the referenced user becomes.
+
+
+**1. Authentication vs Authorization:**
+ What is the difference between Authentication and Authorization in our
+code?
+ **Answer:**
+ Authentication is the process of verifying the identity of a user, meaning the system checks if the username and password are correct during login. Authorization, on the other hand, determines what actions or resources the authenticated user is allowed to access, such as checking if the user has permission to view or modify certain data.
+
+
+**2. Security (bcrypt):**
+ Why did we use bcryptjs instead of saving passwords as plain text in
+MongoDB?
+ **Answer:**
+ We used bcryptjs to hash passwords before saving them in MongoDB to protect user data. If passwords were stored as plain text, hackers could easily read them if the database is compromised, but bcrypt encrypts the password, making it difficult to decode and improving security.
+
+
+**3. JWT Structure:**
+What does the protect middleware do when it receives a JWT from the
+client?
+** Answer:** 
+The protect middleware checks the JWT sent by the client in the request header, verifies if the token is valid, and decodes the user information stored inside it. If the token is valid, the middleware allows the request to proceed and attaches the user data to the request object; if not, it blocks access and returns an unauthorized error.
